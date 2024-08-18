@@ -2,11 +2,12 @@ package ru.skypro.homework.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.skypro.homework.bd.entity.Comment;
+
+import ru.skypro.homework.bd.entity.User;
 
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Comment findById(long Id);
+    User findUserById(long id);
 
 }

@@ -1,17 +1,20 @@
-package ru.skypro.homework.dto;
+package ru.skypro.homework.bd.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "Adds")
 public class Add {
+
     @Id
     @GeneratedValue
     private long id;
@@ -21,4 +24,3 @@ public class Add {
     private String title;
 
 }
-

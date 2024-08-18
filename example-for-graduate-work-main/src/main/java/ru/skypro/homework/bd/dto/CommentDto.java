@@ -1,21 +1,14 @@
-package ru.skypro.homework.dto;
+package ru.skypro.homework.bd.dto;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table
-public class Comment {
-    @Setter
-    @Getter
-    @Id
+public class CommentDto {
+
     private Long id;
     private Integer author;
     private String authorComment;
