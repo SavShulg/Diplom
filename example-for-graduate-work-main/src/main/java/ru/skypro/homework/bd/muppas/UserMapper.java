@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.skypro.homework.bd.dto.UserDto;
 import ru.skypro.homework.bd.entity.User;
 @Service
-public class UserMupp {
+public class UserMapper {
     public UserDto toDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());

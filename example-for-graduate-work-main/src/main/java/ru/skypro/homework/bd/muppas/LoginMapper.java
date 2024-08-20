@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.skypro.homework.bd.dto.LoginDto;
 import ru.skypro.homework.bd.entity.Login;
 @Service
-public class LoginMupp {
+public class LoginMapper {
     public LoginDto toDto(Login login) {
         LoginDto loginDto = new LoginDto();
         loginDto.setUsername(login.getUsername());

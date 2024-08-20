@@ -3,7 +3,7 @@ package ru.skypro.homework.service.impl;
 import org.springframework.stereotype.Service;
 import ru.skypro.homework.bd.dto.CommentDto;
 import ru.skypro.homework.bd.entity.Comment;
-import ru.skypro.homework.bd.muppas.CommentMupp;
+import ru.skypro.homework.bd.muppas.CommentMapper;
 import ru.skypro.homework.repository.CommentRepository;
 
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    private final CommentMupp commentMupp;
+    private final CommentMapper commentMupp;
 
     private final CommentRepository commentRepository;
 
-    public CommentService(CommentMupp commentMupp, CommentRepository commentRepository) {
+    public CommentService(CommentMapper commentMupp, CommentRepository commentRepository) {
         this.commentMupp = commentMupp;
         this.commentRepository = commentRepository;
     }

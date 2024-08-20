@@ -2,10 +2,7 @@ package ru.skypro.homework.bd.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -23,4 +20,11 @@ public class Comment {
     private Long editComment;
     private String text;
 
+    @ManyToOne
+    @JoinColumn(name = "adds_id")
+    private Add add;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

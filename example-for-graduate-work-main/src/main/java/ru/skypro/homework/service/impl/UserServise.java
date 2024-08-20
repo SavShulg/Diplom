@@ -3,7 +3,7 @@ package ru.skypro.homework.service.impl;
 import org.springframework.stereotype.Service;
 import ru.skypro.homework.bd.dto.UserDto;
 import ru.skypro.homework.bd.entity.User;
-import ru.skypro.homework.bd.muppas.UserMupp;
+import ru.skypro.homework.bd.muppas.UserMapper;
 import ru.skypro.homework.repository.UserRepository;
 
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.List;
 public class UserServise {
     private final UserRepository userRepository;
 
-    private final UserMupp userMupp;
+    private final UserMapper userMupp;
 
-    public UserServise(UserRepository userRepository, UserMupp userMupp) {
+    public UserServise(UserRepository userRepository, UserMapper userMupp) {
         this.userRepository = userRepository;
         this.userMupp = userMupp;
     }

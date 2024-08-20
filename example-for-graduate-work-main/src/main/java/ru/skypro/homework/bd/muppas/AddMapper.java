@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.skypro.homework.bd.dto.AddDto;
 import ru.skypro.homework.bd.entity.Add;
 @Service
-public class AddMap {
+public class AddMapper {
 
     public AddDto toDto(Add add) {
         AddDto addDto = new AddDto();

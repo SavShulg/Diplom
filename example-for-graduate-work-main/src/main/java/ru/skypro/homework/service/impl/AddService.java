@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import ru.skypro.homework.bd.dto.AddDto;
 import ru.skypro.homework.bd.entity.Add;
-import ru.skypro.homework.bd.muppas.AddMap;
+import ru.skypro.homework.bd.muppas.AddMapper;
 import ru.skypro.homework.repository.AddsRepository;
 
 import java.util.Collection;
@@ -15,9 +15,9 @@ public class AddService  {
 
     private final AddsRepository addsRepository;
 
-    private final AddMap addMap;
+    private final AddMapper addMap;
 
-    public AddService(AddsRepository addsRepository, AddMap addMap) {
+    public AddService(AddsRepository addsRepository, AddMapper addMap) {
         this.addsRepository = addsRepository;
         this.addMap = addMap;
     }

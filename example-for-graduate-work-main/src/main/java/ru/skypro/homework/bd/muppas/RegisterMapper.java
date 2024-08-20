@@ -5,7 +5,7 @@ import ru.skypro.homework.bd.dto.RegisterDto;
 import ru.skypro.homework.bd.entity.Register;
 
 @Service
-public class RegisterMupp {
+public class RegisterMapper {
     public RegisterDto toDto(Register register) {
         RegisterDto registerDto = new RegisterDto();
         registerDto.setUsername(register.getUsername());

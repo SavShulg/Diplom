@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.homework.bd.dto.AddDto;
-import ru.skypro.homework.bd.muppas.AddMap;
 import ru.skypro.homework.service.impl.AddService;
 
 @Slf4j
@@ -49,6 +48,5 @@ public class AddsController {
         addService.deleteAdd(id);
         return ResponseEntity.ok().build();
     }
-
 
 }

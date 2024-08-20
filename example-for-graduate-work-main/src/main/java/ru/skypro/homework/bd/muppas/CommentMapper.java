@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.skypro.homework.bd.dto.CommentDto;
 import ru.skypro.homework.bd.entity.Comment;
 @Service
-public class CommentMupp {
+public class CommentMapper {
     public CommentDto toDto(Comment comment) {
         CommentDto ComDto = new CommentDto();
         ComDto.setId(comment.getId());

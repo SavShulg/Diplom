@@ -2,10 +2,8 @@ package ru.skypro.homework.bd.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,5 +20,12 @@ public class Add {
     private String image;
     private int price;
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "add", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
 
 }
