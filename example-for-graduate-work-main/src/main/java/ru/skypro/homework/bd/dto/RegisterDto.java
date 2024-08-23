@@ -1,9 +1,12 @@
-package ru.skypro.homework.dto;
+package ru.skypro.homework.bd.dto;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
-public class Register {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class RegisterDto {
 
     private String username;
     private String password;
@@ -11,4 +14,5 @@ public class Register {
     private String lastName;
     private String phone;
     private Role role;
+    private Long id;
 }
