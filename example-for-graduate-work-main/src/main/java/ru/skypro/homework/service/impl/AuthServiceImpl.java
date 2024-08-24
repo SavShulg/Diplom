@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import ru.skypro.homework.bd.dto.RegisterDto;
 import ru.skypro.homework.repository.AuthRepository;
 
+import java.util.Optional;
+
 @Service
 public class AuthServiceImpl implements AuthRepository {
 
@@ -44,4 +46,8 @@ public class AuthServiceImpl implements AuthRepository {
         return true;
     }
 
+
+    public Optional<String> changePassword(String name, String currentPassword, String newPassword) {
+        return null;
+    }
 }
