@@ -27,47 +27,7 @@ public class WebSecurityConfig {
             "/register"
     };
 
-    @Bean
-    public UserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails user =
-                User.builder()
-                        .username("user@gmail.com")
-                        .password("password")
-                        .passwordEncoder(passwordEncoder::encode)
-                        .roles(Role.USER.name())
-                        .build();
-        return new UserDetailsManager() {
-            @Override
-            public void createUser(UserDetails user) {
 
-            }
-
-            @Override
-            public void updateUser(UserDetails user) {
-
-            }
-
-            @Override
-            public void deleteUser(String username) {
-
-            }
-
-            @Override
-            public void changePassword(String oldPassword, String newPassword) {
-
-            }
-
-            @Override
-            public boolean userExists(String username) {
-                return false;
-            }
-
-            @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return null;
-            }
-        };
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

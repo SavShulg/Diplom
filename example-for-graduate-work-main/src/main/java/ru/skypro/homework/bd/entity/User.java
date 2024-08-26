@@ -1,8 +1,13 @@
 package ru.skypro.homework.bd.entity;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import ru.skypro.homework.bd.dto.Role;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -11,7 +16,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table (name = "Users")
-public class User {
+public class User  {
 
     @Id
     @GeneratedValue
@@ -21,7 +26,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String phone;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -29,4 +35,7 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
+
+
+
 }

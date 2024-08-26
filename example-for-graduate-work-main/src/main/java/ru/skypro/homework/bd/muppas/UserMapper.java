@@ -1,6 +1,7 @@
 package ru.skypro.homework.bd.muppas;
 
 import org.springframework.stereotype.Service;
+import ru.skypro.homework.bd.dto.Role;
 import ru.skypro.homework.bd.dto.UserDto;
 import ru.skypro.homework.bd.entity.User;
 @Service
@@ -14,7 +15,7 @@ public class UserMapper {
         userDto.setLastName(user.getLastName());
         userDto.setEmail(user.getEmail());
         userDto.setPhone(user.getPhone());
-        userDto.setRole(user.getRole());
+        userDto.setRole(Role.of(user.getRole()));
         return userDto;
     }
 
@@ -27,7 +28,7 @@ public class UserMapper {
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setPhone(userDto.getPhone());
-        user.setRole(userDto.getRole());
+        user.setRole(Role.of(userDto.getRole()));
         return user;
     }
 }

@@ -1,5 +1,6 @@
 package ru.skypro.homework.service.impl;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import ru.skypro.homework.bd.dto.UserDto;
 import ru.skypro.homework.bd.entity.User;
@@ -31,10 +32,8 @@ public class UserServise {
         return userMupp.toDto(edit);
     }
 
-    public void deleteAdd(long id) {
-        userRepository.deleteById(id);
-    }
-
+    // Разрешить доступ только владельцу записи
+    @PreAuthorize("#userId == authentication.principal.id")
     public List<User> getAllAdd() {
         return userRepository.findAll();
     }
@@ -42,6 +41,10 @@ public class UserServise {
     public User findAddById(long id) {
         return userRepository.findUserById(id);
     }
-
+    // Только пользователи с ролью ADMIN и владелец записи
+    @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id")
+    public void deleteAdd(long id) {
+        userRepository.deleteById(id);
+    }
 }
 

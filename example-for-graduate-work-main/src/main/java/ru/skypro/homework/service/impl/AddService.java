@@ -1,5 +1,6 @@
 package ru.skypro.homework.service.impl;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 
@@ -33,7 +34,8 @@ public class AddService  {
         var edit = addsRepository.save(entity);
         return addMap.toDto(edit);
     }
-
+    // Только пользователи с ролью ADMIN могут выполнить этот метод или сам владелец
+    @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id")
     public void deleteAdd(long id) {
         addsRepository.deleteById(id);
     }
