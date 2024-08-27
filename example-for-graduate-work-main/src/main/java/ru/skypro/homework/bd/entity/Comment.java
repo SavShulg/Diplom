@@ -1,21 +1,18 @@
-package ru.skypro.homework.dto;
+package ru.skypro.homework.bd.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table
+@Table(name = "Comment")
 public class Comment {
-    @Setter
-    @Getter
     @Id
+    @GeneratedValue
     private Long id;
     private Integer author;
     private String authorComment;
@@ -23,4 +20,11 @@ public class Comment {
     private Long editComment;
     private String text;
 
+    @ManyToOne
+    @JoinColumn(name = "adds_id")
+    private Add add;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
