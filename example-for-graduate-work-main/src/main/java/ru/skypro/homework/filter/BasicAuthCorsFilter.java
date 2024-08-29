@@ -4,6 +4,7 @@ package ru.skypro.homework.filter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.persistence.Basic;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ public class BasicAuthCorsFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest,
                                     HttpServletResponse httpServletResponse,
                                     FilterChain filterChain)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         httpServletResponse.addHeader("Access-Control-Allow-Credentials", "true");
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
