@@ -14,4 +14,12 @@ public class UserDetailsDto {
     private String email;
     private String password;
     private Role role;
+
+    public Object getPassword(UserDetailsDto userDetailsDto) {
+        return userDetailsDto.getPassword();
+    }
+
+    public Object getEmail(UserDetailsDto userDetailsDto) {
+        return userDetailsDto.getEmail();
+    }
 }
