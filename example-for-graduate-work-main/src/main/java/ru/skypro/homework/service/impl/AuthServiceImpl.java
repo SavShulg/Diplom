@@ -46,8 +46,4 @@ public class AuthServiceImpl implements AuthRepository {
         return true;
     }
 
-
-    public Optional<String> changePassword(String name, String currentPassword, String newPassword) {
-        return null;
-    }
 }

@@ -13,7 +13,6 @@ import ru.skypro.homework.repository.AuthRepository;
 @CrossOrigin(value = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/auth")
 public class AuthController {
 
     private final AuthRepository authService;

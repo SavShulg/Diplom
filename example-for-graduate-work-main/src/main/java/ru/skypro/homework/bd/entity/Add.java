@@ -12,9 +12,9 @@ import java.util.List;
 @Entity
 @Table(name = "Adds")
 public class Add {
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue
+
     private long id;
     private long authorId;
     private String image;

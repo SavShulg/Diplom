@@ -1,13 +1,10 @@
 package ru.skypro.homework.bd.entity;
 
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import ru.skypro.homework.bd.dto.Role;
 
 import javax.persistence.*;
-import java.util.Collection;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Data
@@ -15,27 +12,28 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table (name = "Users")
-public class User  {
-
+@Table(name = "Users")
+public class User {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue
     private Long id;
     private String username;
     private String email;
+    private String password;
     private String firstName;
     private String lastName;
-    private String phone;
     @Enumerated(EnumType.STRING)
     private Role role;
-    private String password;
+
+    @Column(nullable = false)
+    @Pattern(regexp = "(\\+7|8)?\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}")
+    private String phone;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Add> adds;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
-
 
 
 }

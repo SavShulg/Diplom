@@ -12,8 +12,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "Login")
+
 public class Login {
     @Id
     @GeneratedValue

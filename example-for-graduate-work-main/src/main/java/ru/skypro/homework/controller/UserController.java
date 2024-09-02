@@ -63,12 +63,10 @@ public class UserController {
     @PostMapping("/set_password")
     public NewPassword setPassword(@RequestBody @NotNull NewPassword newPassword, @NotNull Authentication authentication) {
         NewPassword resultPassword = new NewPassword();
-        authService.changePassword(
-                        authentication.getName(),
+        userServise.changePassword(
                         newPassword.getCurrentPassword(),
                         newPassword.getNewPassword()
-                )
-                .ifPresent(resultPassword::setCurrentPassword);
+                );
         return resultPassword;
     }
 }

@@ -10,6 +10,8 @@ import ru.skypro.homework.bd.dto.Role;
 import ru.skypro.homework.bd.entity.User;
 import ru.skypro.homework.repository.UserRepository;
 
+import java.util.Objects;
+
 @Service
 public class CustomUserDetailsManager implements UserDetailsManager {
 
@@ -23,18 +25,23 @@ public class CustomUserDetailsManager implements UserDetailsManager {
     @Override
     public void createUser(UserDetails userDetails) {
         User user1 = new User();
-        user1.setUsername(userDetails.getUsername());
+        user1.setEmail(userDetails.getUsername());
         user1.setPassword(userDetails.getPassword());
-        user1.setRole(Role.valueOf(userDetails.getAuthorities().stream().findFirst().orElseThrow().getAuthority()));
+
+        Objects.equals(user1.getPhone(), user1.getPhone());
+        user1.setRole(Role.valueOf(userDetails.getAuthorities().stream().findFirst().orElseThrow().getAuthority().replace("ROLE_", "")));
+        userRepository.save(user1);
     }
 
     @Override
     public void updateUser(UserDetails user) {
         User user2 = new User();
-        user2.setUsername(user.getUsername());
+        user2.setEmail(user.getUsername());
         user2.setPassword(user.getPassword());
-        user2.setRole(Role.valueOf(user.getAuthorities().stream().findFirst().orElseThrow().getAuthority()));
+        user2.setRole(Role.valueOf(user.getAuthorities().stream().findFirst().orElseThrow().getAuthority().replace("ROLE_", "")));
+        userRepository.save(user2);
     }
+
 
     @Override
     public void deleteUser(String username) {
@@ -60,4 +67,5 @@ public class CustomUserDetailsManager implements UserDetailsManager {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
     }
+
 }
