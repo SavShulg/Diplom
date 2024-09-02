@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.skypro.homework.dto.Comment;
+import ru.skypro.homework.bd.dto.CommentDto;
 import ru.skypro.homework.service.impl.CommentService;
 
 
@@ -24,28 +24,28 @@ public class CommentController {
 
 
     @PostMapping
-    public ResponseEntity<Comment> addComment(@RequestBody Comment comment) {
-        return ResponseEntity.ok(new Comment());
+    public ResponseEntity<CommentDto> addComment(@RequestBody CommentDto comment) {
+        return ResponseEntity.ok(new CommentDto());
     }
 
     @PutMapping
-    public ResponseEntity<Comment> editComment(@RequestBody List<Comment> comments) {
-        return ResponseEntity.ok(new Comment());
+    public ResponseEntity<CommentDto> editComment(@RequestBody List<CommentDto> comments) {
+        return ResponseEntity.ok(new CommentDto());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Comment> findCommentById(@PathVariable Long id) {
-        return ResponseEntity.ok(new Comment());
+    public ResponseEntity<CommentDto> findCommentById(@PathVariable Long id) {
+        return ResponseEntity.ok(new CommentDto());
     }
 
     @GetMapping
-    public ResponseEntity<List<Comment>> getAllComments() {
-        return ResponseEntity.ok(new ArrayList<Comment>());
+    public ResponseEntity<List<CommentDto>> getAllComments() {
+        return ResponseEntity.ok(new ArrayList<CommentDto>());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Comment> updateComment(@PathVariable Long id, @RequestBody Comment comment) {
-        return ResponseEntity.ok(new Comment());
+    public ResponseEntity<CommentDto> updateComment(@PathVariable Long id, @RequestBody CommentDto comment) {
+        return ResponseEntity.ok(new CommentDto());
     }
 
     @DeleteMapping("/{id}")
