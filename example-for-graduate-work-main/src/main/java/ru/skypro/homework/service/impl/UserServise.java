@@ -1,22 +1,30 @@
 package ru.skypro.homework.service.impl;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 import ru.skypro.homework.bd.dto.UserDto;
 import ru.skypro.homework.bd.entity.User;
 import ru.skypro.homework.bd.muppas.UserMapper;
+//import ru.skypro.homework.repository.NewPassRepository;
+import ru.skypro.homework.config.CustomUserDetailsManager;
 import ru.skypro.homework.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServise {
     private final UserRepository userRepository;
 
     private final UserMapper userMupp;
+    private final UserDetailsManager manager;
 
-    public UserServise(UserRepository userRepository, UserMapper userMupp) {
+
+    public UserServise(UserRepository userRepository, UserMapper userMupp, CustomUserDetailsManager customUserDetailsManager, UserDetailsManager manager) {
         this.userRepository = userRepository;
         this.userMupp = userMupp;
+        this.manager = manager;
     }
 
 
@@ -25,6 +33,11 @@ public class UserServise {
         var save = userRepository.save(entity);
         return userMupp.toDto(save);
     }
+    public void changePassword(String currentPassword, String newPassword) {
+        manager.changePassword(currentPassword, newPassword);
+    }
+
+
 
     public UserDto editUser(UserDto user) {
         var entity = userMupp.toEntity(user);

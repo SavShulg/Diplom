@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class UserDetailsDto {
     private Integer id;
     private String email;
+    private String userName;
+    private String phone;
     private String password;
     private Role role;
 
@@ -19,7 +21,7 @@ public class UserDetailsDto {
         return userDetailsDto.getPassword();
     }
 
-    public Object getEmail(UserDetailsDto userDetailsDto) {
-        return userDetailsDto.getEmail();
+    public Object getUsername(UserDetailsDto userDetailsDto) {
+        return userDetailsDto.getUserName();
     }
 }

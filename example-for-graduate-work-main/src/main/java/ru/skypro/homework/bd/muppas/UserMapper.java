@@ -9,7 +9,7 @@ public class UserMapper {
     public UserDto toDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
-        userDto.setUsername(user.getUsername());
+        userDto.setUserName(user.getUserName());
         userDto.setPassword(user.getPassword());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
@@ -22,7 +22,7 @@ public class UserMapper {
     public User toEntity(UserDto userDto) {
         User user = new User();
         user.setId(user.getId());
-        user.setUsername(userDto.getUsername());
+        user.setUserName(userDto.getUserName());
         user.setPassword(userDto.getPassword());
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());

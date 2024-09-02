@@ -25,26 +25,32 @@ public class CommentController {
 
     @PostMapping
     public ResponseEntity<CommentDto> addComment(@RequestBody CommentDto comment) {
+        commentService.commentAdd(comment);
         return ResponseEntity.ok(new CommentDto());
     }
 
     @PutMapping
-    public ResponseEntity<CommentDto> editComment(@RequestBody List<CommentDto> comments) {
+    public ResponseEntity<CommentDto> editComment(@RequestBody CommentDto comments) {
+        commentService.editComment(comments);
         return ResponseEntity.ok(new CommentDto());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CommentDto> findCommentById(@PathVariable Long id) {
+        commentService.findCommentById(id);
         return ResponseEntity.ok(new CommentDto());
     }
 
     @GetMapping
     public ResponseEntity<List<CommentDto>> getAllComments() {
+        commentService.getAllComments();
         return ResponseEntity.ok(new ArrayList<CommentDto>());
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CommentDto> updateComment(@PathVariable Long id, @RequestBody CommentDto comment) {
+        commentService.editComment(comment);
+        commentService.findCommentById(id);
         return ResponseEntity.ok(new CommentDto());
     }
 

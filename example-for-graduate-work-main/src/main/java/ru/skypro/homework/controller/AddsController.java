@@ -12,7 +12,7 @@ import ru.skypro.homework.service.impl.AddService;
 @Slf4j
 @CrossOrigin(value = "http://localhost:3000")
 @RestController
-@RequestMapping("/Adds")
+@RequestMapping("/adds")
 @RequiredArgsConstructor
 public class AddsController {
     private final AddService addService;
@@ -33,6 +33,8 @@ public class AddsController {
 
     @PutMapping("/{id}")
     public ResponseEntity<AddDto> updateAdd(@PathVariable Long id, @RequestBody AddDto adds) {
+        addService.editAdd(adds);
+        addService.findAddById(id);
         return ResponseEntity.ok(new AddDto());
     }
 

@@ -9,20 +9,23 @@ import org.springframework.web.bind.annotation.*;
 import ru.skypro.homework.bd.dto.NewPassword;
 import ru.skypro.homework.bd.dto.UserDto;
 import ru.skypro.homework.bd.muppas.UserMapper;
+import ru.skypro.homework.repository.UserRepository;
 import ru.skypro.homework.service.impl.AuthServiceImpl;
 import ru.skypro.homework.service.impl.UserServise;
 
 @PreAuthorize(("ROLE_VIEWER"))
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
     private final UserServise userServise;
+    private final UserRepository userRepository;
     private final AuthServiceImpl authService;
     private final UserMapper userMapper;
 
     @Autowired
-    public UserController(UserServise userServise, AuthServiceImpl authService) {
+    public UserController(UserServise userServise, UserRepository userRepository, AuthServiceImpl authService) {
         this.userServise = userServise;
+        this.userRepository = userRepository;
         this.authService = authService;
         this.userMapper = new UserMapper();
     }
@@ -30,11 +33,15 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserDto> addUser(@RequestBody UserDto user) {
-        return ResponseEntity.ok(new UserDto());
+        userServise.userDto(user);
+        userRepository.save(userMapper.toEntity(user));
+        return null;
     }
 
     @PutMapping
     public ResponseEntity<UserDto> editUser(@RequestBody UserDto user) {
+        userServise.editUser(user);
+        userRepository.save(userMapper.toEntity(user));
         UserDto foundUser = userServise.editUser(user);
         if (foundUser == null) {
             return ResponseEntity.notFound().build();
@@ -43,13 +50,19 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable Long UserId, @RequestBody UserDto user) {
-        return ResponseEntity.ok(new UserDto());
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long userId, @RequestBody UserDto user) {
+        userServise.userDto(user);
+        userRepository.save(userMapper.toEntity(user));
+        userServise.findAddById(userId);
+        userRepository.findUserById(userId);
+        return null;
     }
 
-    /*
+
     @GetMapping
     public ResponseEntity<UserDto> findUser(@RequestParam Long id) {
+        userServise.findAddById(id);
+        userRepository.findUserById(id);
         return ResponseEntity.ok(userMapper.toDto(userServise.findAddById(id)));
     }
 
@@ -58,17 +71,15 @@ public class UserController {
         userServise.deleteAdd(id);
         return ResponseEntity.ok().build();
     }
-*/
+
 
     @PostMapping("/set_password")
-    public NewPassword setPassword(@RequestBody @NotNull NewPassword newPassword, @NotNull Authentication authentication) {
+    public NewPassword setPassword(@RequestBody @NotNull NewPassword newPassword) {
         NewPassword resultPassword = new NewPassword();
-        authService.changePassword(
-                        authentication.getName(),
+        userServise.changePassword(
                         newPassword.getCurrentPassword(),
                         newPassword.getNewPassword()
-                )
-                .ifPresent(resultPassword::setCurrentPassword);
+                );
         return resultPassword;
     }
 }

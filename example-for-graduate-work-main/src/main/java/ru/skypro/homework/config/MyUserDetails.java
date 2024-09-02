@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 import ru.skypro.homework.bd.dto.UserDetailsDto;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import ru.skypro.homework.bd.entity.User;
+import ru.skypro.homework.repository.UserRepository;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -22,7 +24,11 @@ import java.util.Optional;
 @RequestScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class MyUserDetails implements UserDetails {
 
+
     private UserDetailsDto UserDetailsDto; // DTO, содержащий данные пользователя
+
+    public MyUserDetails(UserRepository userRepository) {
+    }
 
 
     // Возвращает коллекцию прав (ролей) пользователя
@@ -48,7 +54,7 @@ public class MyUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return Optional.ofNullable(UserDetailsDto)
-                .map(UserDetailsDto::getEmail)
+                .map(UserDetailsDto::getUsername)
                 .orElse(null).toString();
     }
 
