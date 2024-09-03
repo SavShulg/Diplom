@@ -1,8 +1,10 @@
 package ru.skypro.homework.service.impl;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
+import ru.skypro.homework.bd.dto.Role;
 import ru.skypro.homework.bd.dto.UserDto;
 import ru.skypro.homework.bd.entity.User;
 import ru.skypro.homework.bd.muppas.UserMapper;
@@ -21,7 +23,7 @@ public class UserServise {
     private final UserDetailsManager manager;
 
 
-    public UserServise(UserRepository userRepository, UserMapper userMupp, CustomUserDetailsManager customUserDetailsManager, UserDetailsManager manager) {
+    public UserServise(UserRepository userRepository, UserMapper userMupp, UserDetailsManager manager) {
         this.userRepository = userRepository;
         this.userMupp = userMupp;
         this.manager = manager;
@@ -36,7 +38,6 @@ public class UserServise {
     public void changePassword(String currentPassword, String newPassword) {
         manager.changePassword(currentPassword, newPassword);
     }
-
 
 
     public UserDto editUser(UserDto user) {

@@ -10,7 +10,7 @@ import lombok.*;
 public class AddDto {
 
     private long id;
-    private long authorId;
+    private String description;
     private String image;
     private int price;
     private String title;

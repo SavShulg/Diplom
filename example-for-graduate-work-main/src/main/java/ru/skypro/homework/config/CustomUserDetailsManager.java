@@ -30,7 +30,7 @@ public class CustomUserDetailsManager implements UserDetailsManager {
     @Override
     public void createUser(UserDetails userDetails) {
         User user1 = new User();
-        user1.setEmail(userDetails.getUsername());
+        user1.setUserName(userDetails.getUsername());
         user1.setPassword(userDetails.getPassword());
         user1.setRole(Role.valueOf(userDetails.getAuthorities().stream().findFirst().orElseThrow().getAuthority().replace("ROLE_", "")));
         userRepository.save(user1);
@@ -39,8 +39,9 @@ public class CustomUserDetailsManager implements UserDetailsManager {
     @Override
     public void updateUser(UserDetails user) {
         User user2 = new User();
+        user2.setUserName(user.getUsername());
         user2.setPassword(user.getPassword());
-        user2.setRole(Role.valueOf(user.getAuthorities().stream().findFirst().orElseThrow().getAuthority()));
+        user2.setRole(Role.valueOf(user.getAuthorities().stream().findFirst().orElseThrow().getAuthority().replace("ROLE_", "")));
         userRepository.save(user2);
     }
 

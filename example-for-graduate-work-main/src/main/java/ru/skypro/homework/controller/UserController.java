@@ -34,14 +34,12 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDto> addUser(@RequestBody UserDto user) {
         userServise.userDto(user);
-        userRepository.save(userMapper.toEntity(user));
         return null;
     }
 
     @PutMapping
     public ResponseEntity<UserDto> editUser(@RequestBody UserDto user) {
         userServise.editUser(user);
-        userRepository.save(userMapper.toEntity(user));
         UserDto foundUser = userServise.editUser(user);
         if (foundUser == null) {
             return ResponseEntity.notFound().build();
@@ -52,9 +50,7 @@ public class UserController {
     @PutMapping("/{userId}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Long userId, @RequestBody UserDto user) {
         userServise.userDto(user);
-        userRepository.save(userMapper.toEntity(user));
         userServise.findAddById(userId);
-        userRepository.findUserById(userId);
         return null;
     }
 
@@ -62,7 +58,6 @@ public class UserController {
     @GetMapping
     public ResponseEntity<UserDto> findUser(@RequestParam Long id) {
         userServise.findAddById(id);
-        userRepository.findUserById(id);
         return ResponseEntity.ok(userMapper.toDto(userServise.findAddById(id)));
     }
 

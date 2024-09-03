@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 
 import ru.skypro.homework.bd.dto.AddDto;
 import ru.skypro.homework.bd.entity.Add;
+import ru.skypro.homework.bd.entity.Image;
 import ru.skypro.homework.bd.muppas.AddMapper;
 import ru.skypro.homework.repository.AddsRepository;
+import ru.skypro.homework.repository.ImageRepository;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 
 @Service
@@ -16,12 +19,15 @@ public class AddService  {
 
     private final AddsRepository addsRepository;
 
+
+
     private final AddMapper addMap;
 
     public AddService(AddsRepository addsRepository, AddMapper addMap) {
         this.addsRepository = addsRepository;
         this.addMap = addMap;
     }
+
 
     public AddDto addingAnAd(AddDto adds) {
         var entity = addMap.toEntity(adds);

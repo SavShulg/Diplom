@@ -9,9 +9,9 @@ public class AddMapper {
     public AddDto toDto(Add add) {
         AddDto addDto = new AddDto();
         addDto.setId(add.getId());
-        addDto.setAuthorId(add.getAuthorId());
+        addDto.setDescription(add.getDescription());
         addDto.setTitle(add.getTitle());
-        addDto.setImage(add.getImage());
+        addDto.setImage(String.valueOf(add.getImage()));
         addDto.setPrice(add.getPrice());
         return addDto;
     }
@@ -19,9 +19,9 @@ public class AddMapper {
     public Add toEntity(AddDto addDto) {
         Add add = new Add();
         add.setId(addDto.getId());
-        add.setAuthorId(addDto.getAuthorId());
+        add.setDescription(addDto.getDescription());
         add.setTitle(addDto.getTitle());
-        add.setImage(addDto.getImage());
+        add.setImage(Integer.valueOf(addDto.getImage()));
         add.setPrice(addDto.getPrice());
         return add;
     }
