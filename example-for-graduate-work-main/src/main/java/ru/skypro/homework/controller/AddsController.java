@@ -1,28 +1,30 @@
 package ru.skypro.homework.controller;
 
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.skypro.homework.dto.Add;
+import ru.skypro.homework.bd.dto.AddDto;
 import ru.skypro.homework.service.impl.AddService;
 
 @Slf4j
 @CrossOrigin(value = "http://localhost:3000")
 @RestController
-@RequestMapping("/Adds")
+@RequestMapping("/adds")
 @RequiredArgsConstructor
 public class AddsController {
     private final AddService addService;
 
     @PostMapping
-    public Add addingAnAd(@RequestBody Add adds) {
+    public AddDto addingAnAd(@RequestBody AddDto adds) {
         return addService.addingAnAd(adds);
     }
 
     @PutMapping
-    public ResponseEntity<Add> editAdd(@RequestBody Add adds) {
-        Add foundAdd = addService.editAdd(adds);
+    public ResponseEntity<AddDto> editAdd(@RequestBody AddDto adds) {
+        AddDto foundAdd = addService.editAdd(adds);
         if (foundAdd == null) {
             return ResponseEntity.notFound().build();
         }
@@ -30,8 +32,10 @@ public class AddsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Add> updateAdd(@PathVariable Long id, @RequestBody Add adds) {
-        return ResponseEntity.ok(new Add());
+    public ResponseEntity<AddDto> updateAdd(@PathVariable Long id, @RequestBody AddDto adds) {
+        addService.editAdd(adds);
+        addService.findAddById(id);
+        return ResponseEntity.ok(new AddDto());
     }
 
     @GetMapping
@@ -42,10 +46,9 @@ public class AddsController {
         return ResponseEntity.ok(addService.getAllAdd());
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity deleteAdd(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAd(@PathVariable Long id) {
         addService.deleteAdd(id);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }
